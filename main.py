@@ -495,4 +495,19 @@ def string_expansion(s):
     return ""
 
 
-print(string_expansion('3D2a5d2f'))
+def AlphaNum_NumAlpha(string):
+    letters = "abcdefghijklmnopqrstuvwxyz"
+    flip = ""
+    num = ""
+    for x in string:
+        if x.isalpha():
+            if len(num) > 0:
+                flip += letters[int(num) - 1]
+                num = ""
+            flip += str(letters.index(x) + 1)
+        else:
+            num += x
+    if len(num) > 0:
+        flip += letters[int(num) - 1]
+    return flip
+
