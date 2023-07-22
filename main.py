@@ -511,3 +511,39 @@ def AlphaNum_NumAlpha(string):
         flip += letters[int(num) - 1]
     return flip
 
+
+def shortener(message):
+    mess_len = len(message)
+    short = ""
+    if mess_len > 160:
+        space_count = len([x for x in message if x == ' '])
+        if mess_len - space_count > 160:
+            cap = False
+            for x in message:
+                if x == ' ':
+                    cap = True
+                else:
+                    if cap:
+                        short += x.upper()
+                        cap = False
+                    else:
+                        short += x
+            return short
+        else:
+            remove_spaces = mess_len - 160
+            hit_spaces = 0
+            rev_mess = message[::-1]
+            for x in rev_mess:
+                if x == ' ':
+                    hit_spaces += 1
+                    if hit_spaces <= remove_spaces and len(short) > 0:
+                        temp = short[-1].upper()
+                        short = short[:-1] + temp
+                    else:
+                        short += x
+                else:
+                    short += x
+            return short[::-1]
+    return message
+
+
