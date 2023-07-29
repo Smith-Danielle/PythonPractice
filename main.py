@@ -547,3 +547,45 @@ def shortener(message):
     return message
 
 
+def encryptor(key, message):
+    cipher = ""
+    if len(message) > 0:
+        alpha = "abcdefghijklmnopqrstuvwxyz"
+        for x in message:
+            if x.lower() in alpha:
+                index = alpha.index(x.lower()) + key
+                while index > 25:
+                    index -= 26
+                while index < 0:
+                    index += 26
+                letter = alpha[index]
+                if x.isupper():
+                    letter = letter.upper()
+                cipher += letter
+            else:
+                cipher += x
+    return cipher
+
+
+print(encryptor(13, 'Caesar Cipher'))
+
+def typist(s):
+    capLock = False
+    counter = 0
+    for x in s:
+        singleCap = x.isupper()
+        if capLock:
+            if singleCap:
+                counter += 1
+            else:
+                capLock = False
+                counter += 2
+        else:
+            if singleCap:
+                capLock = True
+                counter += 2
+            else:
+                counter += 1
+    return counter
+
+print(typist("BeiJingDaXueDongMen"))
