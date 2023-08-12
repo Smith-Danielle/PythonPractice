@@ -588,4 +588,27 @@ def typist(s):
                 counter += 1
     return counter
 
-print(typist("BeiJingDaXueDongMen"))
+def find_rarest_pepe(pepes):
+    unique = []
+    for x in pepes:
+        if x not in unique:
+            unique += [x]
+    counts = [pepes.count(x) for x in unique]
+    smallest = min(counts)
+    if smallest < 5:
+        answer = [x for x in unique if pepes.count(x) == smallest]
+        if len(answer) == 1:
+            return answer[0]
+        else:
+            answer.sort()
+            return answer
+    else:
+        return 'No rare pepes!'
+
+
+print(find_rarest_pepe(['Donald Trump Pepe',
+                       'Melania Trump Pepe',
+                       'Clown Pepe',
+                       'Clown Pepe',
+                       'Donald Trump Pepe']))
+
